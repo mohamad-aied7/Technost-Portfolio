@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم الإدارية - Technost ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js for simple charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f4f7f6; /* خلفية فاتحة للوحة التحكم */
+            color: #333;
+            overflow: hidden; /* لمنع التمرير داخل الـ iframe */
+        }
+        .sidebar {
+            background-color: #2c3e50; /* لون أزرق داكن */
+            color: #ecf0f1; /* نص فاتح */
+        }
+        .sidebar a {
+            color: #ecf0f1;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.2s ease;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #34495e; /* لون أغمق عند التحويم/النشط */
+        }
+        .header-bar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .btn-primary {
+            background-color: #B28BC7; /* لون اللافندر من الثيم الرئيسي */
+            color: white;
+            transition: background-color 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #8C6A9B;
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar w-64 p-4 flex flex-col justify-between">
+        <div>
+            <div class="text-2xl font-bold mb-8 text-center">Technost ERP</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active rounded-lg mb-2"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-chart-pie"></i> التحليلات</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-tasks"></i> إدارة المهام</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-file-alt"></i> التقارير</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mt-8">
+            <a href="#" class="rounded-lg"><i class="fas fa-cog"></i> الإعدادات</a>
+            <a href="#" class="rounded-lg"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header Bar -->
+        <div class="header-bar p-4 flex justify-between items-center shadow-sm">
+            <h1 class="text-2xl font-semibold">لوحة التحكم الرئيسية</h1>
+            <div class="flex items-center gap-4">
+                <button class="btn-primary py-2 px-4 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-sync-alt"></i> تحديث البيانات
+                </button>
+                <i class="fas fa-bell text-gray-600 text-xl cursor-pointer"></i>
+                <img src="https://placehold.co/40x40/cccccc/333333?text=U" alt="User Avatar" class="rounded-full">
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">إجمالي الإيرادات</div>
+                    <div class="text-4xl font-bold text-green-600">$500,000</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">العملاء الجدد</div>
+                    <div class="text-4xl font-bold text-blue-600">75</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">المشاريع المكتملة</div>
+                    <div class="text-4xl font-bold text-purple-600">30</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">متوسط رضا العملاء</div>
+                    <div class="text-4xl font-bold text-yellow-600">4.8 <i class="fas fa-star text-yellow-500 text-2xl"></i></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-4">الإيرادات الشهرية</h2>
+                    <!-- Added h-64 class to control canvas height -->
+                    <div class="relative h-64">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-4">توزيع العملاء</h2>
+                    <!-- Added h-64 class to control canvas height -->
+                    <div class="relative h-64">
+                        <canvas id="customerDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data for the charts
+        const revenueData = {
+            labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+            datasets: [{
+                label: 'الإيرادات ($)',
+                data: [30000, 45000, 55000, 48000, 60000, 70000, 65000],
+                backgroundColor: '#B28BC7', // Primary color
+                borderColor: '#8C6A9B',
+                borderWidth: 1,
+                borderRadius: 5,
+            }]
+        };
+
+        const customerDistributionData = {
+            labels: ['جدد', 'قائمون', 'محتملون'],
+            datasets: [{
+                data: [30, 60, 10],
+                backgroundColor: ['#5BBA6F', '#3F4771', '#B28BC7'], // Accent, Dark, Primary
+                hoverOffset: 4
+            }]
+        };
+
+        // Configuration for the charts
+        const revenueConfig = {
+            type: 'bar',
+            data: revenueData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Important for controlling height with parent div
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        };
+
+        const customerDistributionConfig = {
+            type: 'doughnut',
+            data: customerDistributionData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Important for controlling height with parent div
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Cairo',
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Render charts when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, revenueConfig);
+
+            const customerCtx = document.getElementById('customerDistributionChart').getContext('2d');
+            new Chart(customerCtx, customerDistributionConfig);
+        });
+    </script>
+</body>
+</html>

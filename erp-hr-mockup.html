@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وحدة الموارد البشرية - Technost ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f4f7f6; /* خلفية فاتحة للوحة التحكم */
+            color: #333;
+            overflow: hidden; /* لمنع التمرير داخل الـ iframe */
+        }
+        .sidebar {
+            background-color: #2c3e50; /* لون أزرق داكن */
+            color: #ecf0f1; /* نص فاتح */
+        }
+        .sidebar a {
+            color: #ecf0f1;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.2s ease;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #34495e; /* لون أغمق عند التحويم/النشط */
+        }
+        .header-bar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .table-header {
+            background-color: #f0f2f5;
+        }
+        .table-row:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .btn-primary {
+            background-color: #B28BC7; /* لون اللافندر من الثيم الرئيسي */
+            color: white;
+            transition: background-color 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #8C6A9B;
+        }
+        .badge-present { background-color: #5BBA6F; color: white; }
+        .badge-absent { background-color: #e74c3c; color: white; }
+        .badge-leave { background-color: #f39c12; color: white; }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar w-64 p-4 flex flex-col justify-between">
+        <div>
+            <div class="text-2xl font-bold mb-8 text-center">Technost ERP</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-users"></i> الموظفون</a></li>
+                    <li><a href="#" class="active rounded-lg mb-2"><i class="fas fa-calendar-alt"></i> الحضور والغياب</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-money-check-alt"></i> الرواتب</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-briefcase"></i> المهام</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-chart-bar"></i> تقارير الموارد البشرية</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mt-8">
+            <a href="#" class="rounded-lg"><i class="fas fa-cog"></i> الإعدادات</a>
+            <a href="#" class="rounded-lg"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header Bar -->
+        <div class="header-bar p-4 flex justify-between items-center shadow-sm">
+            <h1 class="text-2xl font-semibold">وحدة الحضور والغياب</h1>
+            <div class="flex items-center gap-4">
+                <button class="btn-primary py-2 px-4 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-plus"></i> تسجيل حضور جديد
+                </button>
+                <i class="fas fa-bell text-gray-600 text-xl cursor-pointer"></i>
+                <img src="https://placehold.co/40x40/cccccc/333333?text=U" alt="User Avatar" class="rounded-full">
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">إجمالي الموظفين</div>
+                    <div class="text-4xl font-bold text-blue-600">50</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">حاضرون اليوم</div>
+                    <div class="text-4xl font-bold text-green-600">45</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">متغيبون اليوم</div>
+                    <div class="text-4xl font-bold text-red-600">5</div>
+                </div>
+            </div>
+
+            <div class="card p-6">
+                <h2 class="text-xl font-semibold mb-4">سجل الحضور اليومي</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">اسم الموظف</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">القسم</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">وقت الدخول</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">وقت الخروج</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">ملاحظات</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="table-row">
+                                <td class="px-6 py-4 whitespace-nowrap">أحمد محمد</td>
+                                <td class="px-6 py-4 whitespace-nowrap">التطوير</td>
+                                <td class="px-6 py-4 whitespace-nowrap">08:00 ص</td>
+                                <td class="px-6 py-4 whitespace-nowrap">05:00 م</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="badge-present text-xs font-semibold px-2.5 py-0.5 rounded-full">حاضر</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap"></td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-6 py-4 whitespace-nowrap">فاطمة علي</td>
+                                <td class="px-6 py-4 whitespace-nowrap">المبيعات</td>
+                                <td class="px-6 py-4 whitespace-nowrap">--</td>
+                                <td class="px-6 py-4 whitespace-nowrap">--</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="badge-absent text-xs font-semibold px-2.5 py-0.5 rounded-full">غائب</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">إجازة مرضية</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-6 py-4 whitespace-nowrap">سارة خالد</td>
+                                <td class="px-6 py-4 whitespace-nowrap">التسويق</td>
+                                <td class="px-6 py-4 whitespace-nowrap">08:15 ص</td>
+                                <td class="px-6 py-4 whitespace-nowrap">05:10 م</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="badge-present text-xs font-semibold px-2.5 py-0.5 rounded-full">حاضر</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap"></td>
+                            </tr>
+                            <!-- المزيد من الصفوف هنا -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

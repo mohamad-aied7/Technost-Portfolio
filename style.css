@@ -1,0 +1,1598 @@
+/* Custom CSS Variables */
+:root {
+    --primary-color: #B28BC7; /* لون اللافندر - لون أساسي جديد */
+    --secondary-color: #6c757d; /* رمادي */
+    --accent-color: #5BBA6F; /* أخضر (يمكن تعديله ليتناسب مع اللافندر بشكل أفضل إذا لزم الأمر) */
+    --bg-light: #f8f9fa; /* خلفية فاتحة جداً */
+    --bg-dark: #343a40; /* خلفية داكنة للنصوص البيضاء */
+    --text-color: #333; /* لون النص الأساسي */
+    --white: #fff;
+    --border-color: #dee2e6;
+
+    --font-family-primary: 'Cairo', sans-serif; /* خط عربي جميل شائع */
+    --header-height: 70px; /* ارتفاع ثابت للهيدر للشاشات الكبيرة */
+
+    /* ألوان جديدة للابتوب Mac الواقعي */
+    --mac-body-color: #E0E0E0; /* فضي فاتح */
+    --mac-dark-gray: #333333; /* رمادي داكن للنصوص أو التفاصيل */
+    --mac-bezel-color: #1A1A1A; /* أسود للشاشة والإطار الداخلي */
+    --mac-keyboard-color: #2C2C2C; /* لون أزرار لوحة المفاتيح */
+    --mac-trackpad-color: #4A4A4A; /* لون التراكباد */
+    --mac-hinge-color: #555; /* لون المفصلة */
+}
+
+/* Global Styles - إعادة تعيين CSS أساسية */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-primary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+    direction: rtl; /* لجعل الاتجاه من اليمين لليسار */
+    text-align: right; /* محاذاة النص لليمين افتراضياً */
+    overflow-x: hidden; /* لمنع ظهور شريط التمرير الأفقي */
+    padding-top: var(--header-height); /* لإزاحة المحتوى لأسفل الهيدر الثابت */
+}
+
+/* تعديل: هذا سيجعل الهيدر يأخذ ارتفاعه الفعلي عند التمرير أو في الجوال */
+/* وهذا يلغي الحاجة إلى حسابات calc() المعقدة في Media Queries */
+@media (max-width: 768px) {
+    body {
+        padding-top: 0; /* سنستخدم حشوة أعلى للهيدر نفسه على الجوال */
+    }
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #8C6A9B; /* درجة أغمق لللافندر عند التمرير */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    list-style: none;
+}
+
+/* الطباعة */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--bg-dark);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* خط سفلي تحت عناوين h2 */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 50%; /* لتوسيط الخط في اتجاه RTL */
+    transform: translateX(50%); /* يضمن التوسيط الدقيق */
+    width: 80px; /* عرض الخط */
+    height: 3px; /* سمك الخط */
+    background-color: var(--primary-color); /* لون الخط */
+}
+
+h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* الأزرار */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px; /* يمكن تعديله حسب الحاجة */
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center; /* للتأكد من توسيط النص داخل الزر */
+}
+
+.btn:hover {
+    background-color: #8C6A9B;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn-small {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin-top: 10px; /* يمكن تعديله حسب الحاجة */
+}
+
+/* New: Pulse effect for contact form button */
+.contact-section .btn {
+    animation: pulseButton 2s infinite ease-in-out;
+}
+
+@keyframes pulseButton {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(178, 139, 199, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(178, 139, 199, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(178, 139, 199, 0); }
+}
+
+
+/* الهيدر وشريط التنقل */
+header {
+    background-color: #3F4771;
+    color: var(--white);
+    padding: 10px 0;
+    position: fixed; /* تم التغيير من sticky إلى fixed للتحكم بالارتفاع */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    height: var(--header-height); /* استخدام المتغير */
+    display: flex;
+    align-items: center;
+}
+
+header.scrolled {
+    background-color: rgba(63, 71, 113, 0.9);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 90%; /* تأكد من تطبيق عرض الـ container */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: var(--white);
+    margin: 0; /* إزالة الهامش الافتراضي إذا كان شعارًا ضمن وسم h1 */
+}
+
+/* تم نقل الأنماط المضمنة من HTML هنا */
+header .logo img {
+    height: 50px;
+    margin-left: 15px;
+    vertical-align: middle; /* كان موجوداً في HTML */
+}
+
+header .logo a {
+    color: var(--white);
+}
+
+header nav ul {
+    display: flex;
+    gap: 40px;
+}
+
+header nav ul li a {
+    color: var(--white);
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative;
+}
+
+header nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    right: 0; /* ليتناسب مع RTL */
+    bottom: 0;
+    transition: width 0.3s ease;
+}
+
+header nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Hamburger Icon Styles */
+.menu-toggle {
+    display: none; /* Hidden by default on large screens */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    position: relative;
+    z-index: 1001; /* Make sure it's above navigation */
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animation for menu toggle when active */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(-45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(45deg);
+}
+
+/* قسم البطل (Hero Section) - محمد عايد */
+.hero-section { /* تم تغيير الكلاس من `.hero` لتجنب التعارض */
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    text-align: center;
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border-color);
+    /* margin-top: var(--header-height); -- تم إزالة هذا، لأن body لديه padding-top */
+}
+
+.hero-section .profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section h2 {
+    font-size: 3em;
+    color: var(--bg-dark);
+    margin-bottom: 10px;
+    /* إزالة الخط السفلي من h2 في هذا القسم إذا لم يكن مطلوباً */
+    padding-bottom: 0;
+}
+.hero-section h2::after { /* إخفاء الخط السفلي لـ h2 هنا */
+    content: none;
+}
+
+.hero-section .tagline {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Splash Screen */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3F4771, #B28BC7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
+}
+
+#splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#splash-screen img {
+    max-width: 250px;
+    height: auto;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* تأثيرات الظهور عند التمرير (Scroll Reveal Animations) */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* قسم "عن Technost" */
+.about-us-section {
+    padding: 60px 0;
+    background-color: var(--white);
+    /* تم نقل الأنماط المضمنة من HTML هنا */
+    /* padding-top: 20px; -- تم تعديل هذا في الأقسام العامة */
+    /* margin-top: 0; -- لا حاجة لها */
+}
+/* تنسيق الشعار داخل قسم "عن Technost" الذي كان في HTML */
+.about-us-section .container img { 
+    max-width: 250px;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+
+.about-us-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+.about-us-section h3 {
+    color: var(--bg-dark);
+    margin-top: 30px;
+}
+
+.about-us-section p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    display: block;
+    text-align: right;
+}
+
+/* قسم "لماذا نحن؟" (Why Us Section) */
+.why-us-section {
+    background-color: var(--bg-light);
+    padding: 60px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.why-us-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.why-us-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: #f0f0f0;
+}
+
+.why-us-item i {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.why-us-item h3 {
+    color: var(--bg-dark);
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+.why-us-item p {
+    font-size: 1.05em;
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+
+/* قسم الخدمات (Skills Section) */
+.skills-section {
+    background-color: var(--white);
+    padding: 60px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.skill-item {
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    background-color: #e9ecef;
+}
+
+.skill-item i {
+    font-size: 48px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.skill-item h3 {
+    color: var(--primary-color);
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+.skill-item p {
+    font-size: 1.05em;
+    color: var(--text-color);
+}
+
+/* قسم المشاريع (Portfolio Section) - الحلول الذكية */
+.portfolio-section {
+    padding: 60px 0;
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
+}
+
+.portfolio-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.portfolio-section > p {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    color: var(--secondary-color);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.project-item {
+    background-color: var(--bg-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* لتنظيم المحتوى داخله */
+    flex-direction: column; /* لتكديس الصورة ثم النص */
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* الكلاس الجديد لدراسة الحالة المميزة */
+.featured-case-study {
+    grid-column: span 2; /* يجعل العنصر يمتد على عمودين */
+    background: linear-gradient(135deg, #3F4771, #B28BC7);
+    color: var(--white);
+    transform: scale(1.01);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-case-study:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+/* شارة "مميز" */
+.featured-case-study::before {
+    content: '✨ مميز';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #FFD700;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    z-index: 1;
+    animation: fadeInScale 0.5s ease-out;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+
+/* تخصيص صورة دراسة الحالة المميزة لجعلها أكبر */
+.featured-case-study img {
+    height: 300px;
+    object-fit: cover;
+    mix-blend-mode: luminosity;
+    transition: mix-blend-mode 0.3s ease;
+}
+
+.featured-case-study:hover img {
+    mix-blend-mode: normal;
+}
+
+/* تخصيص محتوى دراسة الحالة المميزة */
+.featured-case-study .project-info { /* إضافة الكلاس project-info هنا */
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.featured-case-study h3 {
+    font-size: 1.8em;
+    color: var(--white);
+    margin-bottom: 10px; /* Adjust margin */
+}
+
+.featured-case-study p {
+    font-size: 1.15em;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px; /* Adjust margin */
+}
+
+.featured-case-study .btn-small {
+    background-color: var(--white);
+    color: var(--primary-color);
+    align-self: flex-start; /* Ensure alignment in featured card */
+}
+
+.featured-case-study .btn-small:hover {
+    background-color: #eee;
+    color: #8C6A9B;
+}
+
+.project-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.project-item .project-info { /* إضافة هذا الكلاس ليكون المحتوى مرناً */
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-item h3 {
+    color: var(--bg-dark);
+    font-size: 1.5em;
+    margin-bottom: 10px; /* Adjust margin */
+    flex-grow: 1; /* Allow title to take space */
+}
+
+.project-item p {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-bottom: 20px; /* Adjust margin */
+    line-height: 1.7;
+}
+
+.project-item .btn-small {
+    background-color: var(--accent-color);
+    color: var(--white);
+    align-self: flex-start; /* Align button to start in RTL */
+}
+
+.project-item .btn-small:hover {
+    background-color: #218838;
+}
+
+/* قسم التواصل (Contact Section) */
+.contact-section {
+    background-color: var(--bg-dark);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.1" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H0z"/%3E%3C/g%3E%3C/svg%3E');
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.contact-section h2 {
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+}
+
+.contact-section p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 1;
+}
+
+.contact-section form {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    text-align: right; /* Ensure form content is right-aligned */
+}
+
+.contact-section form input[type="text"],
+.contact-section form input[type="email"],
+.contact-section form textarea {
+    padding: 12px 15px;
+    border: 1px solid rgba(178, 139, 199, 0.5);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 1em;
+    width: 100%;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-section form input::placeholder,
+.contact-section form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-section form input:focus,
+.contact-section form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(91, 186, 111, 0.25);
+}
+
+.contact-section .btn {
+    width: auto;
+    align-self: center;
+    margin-top: 20px; /* Add margin top to button */
+}
+
+.social-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.social-links a {
+    color: var(--white);
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.social-links a i {
+    margin-left: 10px;
+    font-size: 1.3em;
+}
+
+/* الفوتر */
+footer {
+    background-color: #222;
+    color: var(--white);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
+
+/* تنسيقات خاصة بصفحة المدونة (Blog Page Specific Styles) */
+.case-study-hero {
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    text-align: center;
+    padding: 80px 0 40px;
+    /* margin-top: var(--header-height); -- تم إزالة هذا، لأن body لديه padding-top */
+    position: relative;
+    z-index: 1;
+}
+
+.case-study-hero::before { /* Overlay for better text readability */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    z-index: -1;
+}
+
+.case-study-hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: var(--white);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.case-study-hero .subtitle {
+    font-size: 1.2em;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+.case-study-meta {
+    font-size: 0.9em;
+    opacity: 0.9;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+}
+
+.case-study-meta span {
+    margin: 0 10px;
+}
+
+.case-study-section {
+    padding: 60px 0;
+}
+
+.case-study-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2em;
+    color: var(--primary-color);
+}
+
+.case-study-section h3 {
+    color: var(--bg-dark);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.case-study-section p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-size: 1.05em;
+    text-align: right;
+}
+
+.case-study-section ul {
+    list-style: none; /* إزالة الـ bullet الافتراضي */
+    margin-bottom: 25px;
+    padding: 0;
+    margin-right: 20px;
+}
+
+.case-study-section ul li {
+    position: relative;
+    padding-right: 25px; /* مسافة للـ bullet المخصص */
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.case-study-section ul li::before { /* custom bullet point for ul li */
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--primary-color);
+    position: absolute;
+    right: 0;
+    top: 5px;
+    font-size: 0.9em;
+}
+
+
+.case-study-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+.company-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* تنسيقات المدونة (Blog Posts) */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.blog-post-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.blog-post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.blog-post-card .card-content { /* إضافة كلاس المحتوى */
+    padding: 20px;
+    flex-grow: 1; /* للسماح للمحتوى بالتوسع ودفع الزر للأسفل */
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-post-card h3 {
+    color: var(--bg-dark);
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    flex-grow: 1; /* السماح للعنوان بأخذ المساحة المتاحة */
+}
+
+.blog-post-card .post-meta {
+    font-size: 0.85em;
+    color: var(--secondary-color);
+    margin-bottom: 10px; /* تعديل الهامش */
+}
+
+.blog-post-card p {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.blog-post-card .btn-small {
+    background-color: var(--primary-color);
+    align-self: flex-start; /* محاذاة الزر لليمين في RTL */
+    margin-top: auto; /* يدفع الزر للأسفل */
+}
+
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 10px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    color: var(--primary-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination a.active,
+.pagination a:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* تنسيقات صفحة الفريق */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.team-member-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.team-member-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 4px solid var(--primary-color);
+}
+
+.team-member-card h3 {
+    color: var(--bg-dark);
+    font-size: 1.6em;
+    margin-bottom: 5px;
+}
+
+.team-member-card .member-title {
+    color: var(--primary-color);
+    font-size: 1em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.team-member-card p {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.member-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.member-social a {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.member-social a:hover {
+    color: var(--primary-color);
+}
+
+
+/* ******************************************************************* */
+/* ************* تصميم إطارات اللابتوب الواقعي والموشن ديزاين ************* */
+/* ******************************************************************* */
+
+.laptop-container {
+    opacity: 0;
+    transform: translateY(50px) rotateX(15deg); /* تبدأ من الأسفل قليلاً ومائلة */
+    transform-origin: bottom center; /* نقطة الدوران من الأسفل */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease-out; /* زيادة مدة الانتقال */
+    perspective: 1000px; /* لتفعيل تأثيرات 3D على العناصر الفرعية */
+    background-color: transparent; /* إزالة الخلفية من هنا، ستكون في الأجزاء الداخلية */
+    box-shadow: none; /* إزالة الظل من هنا، سنضيفه يدوياً */
+    border-radius: 0; /* إزالة حواف مستديرة من هنا */
+
+    /* ***** التعديلات لتصغير حجم اللابتوبات بشكل عام ***** */
+    max-width: 380px; /* تحديد أقصى عرض للابتوب الواحد */
+    margin: 0 auto; /* توسيط اللابتوب داخل عموده في الشبكة */
+    /* ************************************************* */
+    cursor: pointer; /* للإشارة إلى أنه قابل للنقر */
+}
+
+.laptop-container.animate-in {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg); /* تستقيم وتصل إلى مكانها */
+}
+
+/* جسم اللابتوب العلوي (الشاشة والإطار) - Mac Style */
+.laptop-bezel {
+    background-color: var(--mac-body-color); /* لون جسم اللابتوب (فضي/رمادي) */
+    padding: 20px; /* ***** تم زيادة هذا لجعل الشاشة أصغر بزيادة سمك الإطار ***** */
+    border-radius: 12px; /* حواف مستديرة أكثر تناسقاً */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2), /* ظل خفيف */
+                inset 0 0 0 1px rgba(255,255,255,0.3); /* إطار داخلي لامع */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+    transform-style: preserve-3d;
+    position: relative;
+    z-index: 2;
+}
+
+/* الشاشة الفعلية داخل الإطار */
+.laptop-screen {
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    position: relative;
+    background-color: var(--mac-bezel-color); /* أسود للشاشة */
+    border-radius: 6px; /* حواف مستديرة للشاشة الداخلية */
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8); /* ظل داخلي للشاشة */
+    /* لا يوجد iframe هنا مباشرة بعد الآن */
+}
+
+/* الكاميرا/النتوء العلوي - Mac Style (نقطة صغيرة جداً) */
+.camera-notch {
+    position: absolute;
+    top: 5px; /* أعلى داخل الإطار العلوي */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px; /* حجم أصغر جداً */
+    height: 4px; /* حجم أصغر جداً */
+    background-color: var(--mac-dark-gray); /* لون داكن */
+    border-radius: 50%;
+    z-index: 3;
+}
+
+/* جسم اللابتوب السفلي (القاعدة مع لوحة المفاتيح والتراكباد) - Mac Style */
+.laptop-base {
+    background-color: var(--mac-body-color); /* نفس لون جسم اللابتوب العلوي */
+    height: 35px; /* ارتفاع أقل للقاعدة */
+    border-radius: 0 0 12px 12px; /* حواف مستديرة سفلية */
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4); /* ظل سفلي أكبر */
+    transform-origin: top;
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+    padding: 5px 15px; /* حشوة داخلية أقل للقاعدة */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(0,0,0,0.1); /* خط فاصل خفيف */
+    /* إضافة سمك بسيط للقاعدة */
+    transform: rotateX(-5deg); /* إمالة خفيفة للقاعدة لتبدو مفتوحة */
+    transform-origin: top center;
+}
+
+/* لوحة المفاتيح الوهمية - Mac Style */
+.laptop-base .keyboard {
+    width: 95%;
+    height: 18px; /* ارتفاع لوحة المفاتيح */
+    background-color: var(--mac-keyboard-color); /* لون لوحة المفاتيح */
+    border-radius: 2px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.5); /* ظل داخلي للأزرار */
+    margin-top: 5px; /* مسافة من الأعلى */
+}
+
+/* التراكباد الوهمي - Mac Style */
+.laptop-base .trackpad {
+    width: 35%; /* عرض التراكباد */
+    height: 8px; /* ارتفاع التراكباد */
+    background-color: var(--mac-trackpad-color); /* لون التراكباد */
+    border-radius: 2px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.5); /* ظل داخلي */
+    margin-top: 4px; /* مسافة من لوحة المفاتيح */
+}
+
+/* تأثير تحويم ثلاثي الأبعاد على اللابتوب */
+.laptop-container:hover .laptop-bezel {
+    transform: rotateX(3deg) translateY(-8px); /* دوران خفيف ورفع أكبر للشاشة */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3); /* ظل أكبر وأكثر وضوحاً */
+}
+
+.laptop-container:hover .laptop-base {
+    transform: rotateX(-3deg) translateY(0px); /* القاعدة لا تتحرك بنفس طريقة الشاشة */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* ظل القاعدة عند التحويم */
+}
+
+/* تأثير تحويم عام على الـ laptop-container لرفع الكل قليلاً */
+.laptop-container:hover {
+    transform: translateY(-5px) scale(1.01); /* رفع وتكبير خفيف للابتوب بالكامل */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* ظل عام للابتوب المرتفع */
+}
+
+
+/* ******************************************************************* */
+/* ************* نافذة الـ ERP المنبثقة (Modal Overlay) ************* */
+/* ******************************************************************* */
+.erp-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* خلفية داكنة جداً وشفافة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* ليكون فوق كل شيء */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-100%); /* تبدأ مخفية خارج الشاشة لليسار */
+    transition: opacity 0.4s ease-out, transform 0.5s ease-out; /* حركة الظهور */
+}
+
+.erp-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0); /* تنزلق للداخل */
+}
+
+.erp-modal-content {
+    background-color: var(--mac-body-color); /* لون جسم الـ Mac */
+    width: 90%;
+    height: 90%;
+    max-width: 1200px;
+    max-height: 700px;
+    border-radius: 15px; /* حواف مستديرة كبيرة */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* لإخفاء أي شيء يخرج عن الحواف المستديرة */
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px; /* في RTL، زر الإغلاق يكون على اليمين */
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2001; /* ليكون فوق المحتوى */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.close-modal-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.erp-modal-iframe-container {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mac-bezel-color); /* خلفية سوداء للشاشة */
+    border-radius: 10px; /* حواف مستديرة للشاشة داخل المودال */
+    margin: 15px; /* إطار حول الـ iframe */
+    overflow: hidden; /* لضمان أن الـ iframe داخل الحواف المستديرة */
+}
+
+#erp-modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px; /* يجب أن يتطابق مع الـ container */
+    opacity: 0; /* تبدأ مخفية */
+    transition: opacity 0.3s ease-in;
+}
+
+#erp-modal-iframe.loaded {
+    opacity: 1; /* تظهر بعد التحميل */
+}
+
+.loading-overlay-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* خلفية تحميل داكنة */
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none; /* لا تمنع النقرات بمجرد ظهورها */
+}
+
+.loading-overlay-modal i {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.loading-overlay-modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ******************************************************************* */
+/* ************* نهاية نافذة الـ ERP المنبثقة ************* */
+/* ******************************************************************* */
+
+
+/* Responsive Design - الاستجابة للأجهزة الصغيرة */
+@media (max-width: 992px) {
+    h1 { font-size: 2.8em; }
+    h2 { font-size: 2.2em; }
+    h3 { font-size: 1.6em; }
+
+    header nav ul {
+        gap: 20px;
+    }
+    header .logo img {
+        height: 45px;
+    }
+
+    .hero-section h2 {
+        font-size: 2.5em;
+    }
+    .hero-section .tagline {
+        font-size: 1.3em;
+    }
+
+    .contact-section form {
+        max-width: 500px;
+    }
+
+    /* تصغير حجم اللابتوبات على الشاشات المتوسطة */
+    .laptop-container {
+        max-width: 320px; /* حجم أصغر قليلاً */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header adjustments for mobile */
+    header {
+        height: auto; /* Allow header height to adjust */
+        padding: 15px 0;
+    }
+    header .container {
+        flex-direction: row; /* Keep logo and toggle on one row */
+        justify-content: space-between; /* Space between logo and toggle */
+        align-items: center;
+        gap: 15px;
+    }
+    header .logo {
+        font-size: 2em;
+        margin-bottom: 0;
+    }
+    header .logo img {
+        height: 40px;
+        margin-left: 10px;
+    }
+
+    /* Show hamburger icon */
+    .menu-toggle {
+        display: flex; /* Show the hamburger icon on mobile */
+    }
+
+    /* Hide navigation by default on mobile */
+    header nav {
+        position: absolute;
+        /* استخدام ارتفاع الهيدر الفعلي بدلاً من المتغير الثابت */
+        top: 70px; /* هذا هو ارتفاع الهيدر التقريبي في هذه الشاشة */
+        right: 0;
+        width: 100%;
+        background-color: rgba(63, 71, 113, 0.95); /* Semi-transparent background */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        display: none; /* Hide by default */
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transition: transform 0.3s ease-in-out; /* Smooth slide-in/out */
+        transform: translateX(100%); /* Start off-screen to the right (due to RTL) */
+        overflow-y: auto; /* In case menu is too long */
+        max-height: calc(100vh - 70px); /* Max height to prevent overflow (استخدام قيمة ثابتة للهيدر هنا) */
+    }
+    /* عند فتح القائمة، قد تحتاج الجافا سكريبت إلى ضبط الـ 'top' لـ `header nav` */
+    /* إذا لم تعمل القائمة بشكل صحيح، قد تحتاج إلى الحصول على الارتفاع الفعلي للهيدر من الجافا سكريبت */
+    /* وتعيينه كخاصية CSS مخصصة (variable) أو كقيمة مباشرة. */
+
+
+    /* When navigation is open */
+    header nav.active {
+        display: flex; /* Show it */
+        transform: translateX(0); /* Slide into view */
+    }
+
+    header nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 0; /* Remove gap for full-width links */
+        margin-top: 0; /* No top margin here */
+    }
+    header nav ul li {
+        width: 100%; /* Make list items take full width */
+        margin-bottom: 5px;
+    }
+    header nav ul li:last-child {
+        margin-bottom: 0;
+    }
+    header nav ul li a {
+        display: block; /* Make links fill their parent li */
+        padding: 12px 0; /* Increase padding for touch targets */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add subtle border between links */
+        text-align: center; /* Center link text */
+    }
+    header nav ul li:last-child a {
+        border-bottom: none; /* Remove border from last link */
+    }
+    header nav ul li a::after { /* Hide underline on mobile nav links */
+        content: none;
+    }
+
+    /* Adjust margin-top for hero section when header is dynamically sized */
+    /* بما أننا نستخدم padding-top على body، لا نحتاج إلى margin-top هنا */
+    .hero-section, .case-study-hero, .single-post-hero {
+        margin-top: 0; /* تأكد من إزالة أي هامش علوي موروث */
+        padding-top: calc(80px + 70px); /* إضافة ارتفاع ثابت للهيدر بالإضافة إلى الحشوة الأصلية */
+        /* يمكن ضبط 70px ليكون var(--current-header-height) إذا تم تعيينه بواسطة JS */
+    }
+
+    /* General section padding for mobile */
+    section {
+        padding: 40px 0;
+    }
+    .container {
+        width: 95%; /* Adjust container width for smaller screens */
+    }
+
+    /* Heading sizes for mobile */
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 1.8em; }
+    h3 { font-size: 1.4em; }
+
+    /* Hero section for mobile */
+    .hero-section {
+        padding: 60px 0;
+    }
+    .hero-section h2 {
+        font-size: 2em;
+    }
+    .hero-section .tagline {
+        font-size: 1.1em;
+    }
+    .hero-section .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Grids for mobile - stack columns */
+    .skills-grid,
+    .project-grid,
+    .blog-grid,
+    .team-grid,
+    .why-us-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Featured case study on mobile */
+    .featured-case-study {
+        grid-column: span 1;
+        transform: none; /* Remove scale effect */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* Adjusted shadow */
+    }
+    .featured-case-study:hover { /* Disable hover scale on mobile */
+        transform: none;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .featured-case-study img {
+        height: 200px; /* Smaller image on mobile */
+    }
+    .featured-case-study h3 {
+        font-size: 1.6em;
+    }
+    .featured-case-study p {
+        font-size: 1em;
+    }
+    .featured-case-study::before { /* Adjust badge position for mobile */
+        top: 10px;
+        right: 10px;
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+
+    /* Project/Blog card images on mobile */
+    .project-item img, .blog-post-card img {
+        height: 180px;
+    }
+
+    /* Contact form on mobile */
+    .contact-section form {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .social-links {
+        flex-direction: column; /* Stack social links vertically */
+        gap: 10px;
+    }
+    .social-links a {
+        font-size: 1em;
+        justify-content: center; /* Center each social link */
+    }
+
+    /* Single post page for mobile */
+    .single-post-hero {
+        padding: 60px 0;
+    }
+    .single-post-hero h1 {
+        font-size: 2em;
+    }
+    .single-post-hero .post-meta {
+        font-size: 0.9em;
+    }
+    .single-post-content h2 {
+        font-size: 1.5em;
+        padding-bottom: 5px;
+    }
+    .single-post-content h2::after {
+        width: 40px;
+        height: 2px;
+    }
+    .single-post-content p,
+    .single-post-content ul li {
+        font-size: 0.95em;
+    }
+    .single-post-content ul {
+        margin-right: 15px;
+    }
+    .single-post-content ul li::before {
+        font-size: 0.8em;
+        top: 3px;
+    }
+    .back-to-blog .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    /* Adjustments for realistic laptop on mobile */
+    .laptop-container:hover .laptop-bezel,
+    .laptop-container:hover .laptop-base,
+    .laptop-container:hover {
+        transform: none; /* Disable 3D effects and scale on hover for mobile */
+        box-shadow: none; /* Remove extra shadows on hover for mobile */
+    }
+    .laptop-bezel {
+        padding: 10px; /* إطار أقل سمكاً على الموبايل */
+        border-radius: 8px 8px 0 0;
+    }
+    .laptop-base {
+        height: 40px; /* قاعدة أقل ارتفاعاً */
+        border-radius: 0 0 8px 8px;
+    }
+    .laptop-base .keyboard {
+        height: 15px;
+    }
+    .laptop-base .trackpad {
+        height: 7px;
+    }
+    .laptop-container {
+        max-width: 280px; /* حجم أصغر */
+    }
+
+    /* Modal adjustments for mobile */
+    .erp-modal-content {
+        width: 95%;
+        height: 95%;
+        border-radius: 10px;
+    }
+    .close-modal-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+        top: 10px;
+        right: 10px;
+    }
+    .loading-overlay-modal i {
+        font-size: 2.5em;
+    }
+    .loading-overlay-modal p {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.6em; }
+    h3 { font-size: 1.3em; }
+
+    .hero-section h2 {
+        font-size: 1.8em;
+    }
+    .hero-section .tagline {
+        font-size: 1em;
+    }
+    .hero-section .profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+
+    .btn, .btn-small {
+        padding: 8px 18px;
+        font-size: 0.85em;
+    }
+    /* تصغير حجم اللابتوبات على أصغر الشاشات */
+    .laptop-container {
+        max-width: 250px; /* حجم أصغر جداً */
+    }
+}
