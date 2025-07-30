@@ -15,7 +15,7 @@
 <body>
 
     <div id="splash-screen">
-        <img src="Technost4-removebg-preview.png" alt="Technost Logo"> 
+        <img src="Technost4-removebg-preview.png" alt="شعار Technost"> 
     </div>
 
     <header>
@@ -37,7 +37,18 @@
                     <li><a href="#why-us">لماذا نحن؟</a></li>
                     <li><a href="#services">خدماتنا</a></li>
                     <li><a href="#solutions">حلولنا الذكية</a></li>
-                    <li><a href="#our-erp-showcase">أنظمة ERP</a></li> <!-- رابط جديد لقسم الأنظمة -->
+                    
+                    <!-- NEW: Dropdown for Our Systems -->
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">أنظمتنا <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-content">
+                            <li><a href="#our-erp-showcase">أنظمة ERP الأساسية</a></li>
+                            <li><a href="#cbm-showcase">إدارة فواتير العقود (CBM)</a></li>
+                            <li><a href="#crm-showcase">إدارة علاقات العملاء (CRM)</a></li>
+                        </ul>
+                    </li>
+                    <!-- END NEW: Dropdown for Our Systems -->
+
                     <li><a href="blog.html">المدونة</a></li>
                     <li><a href="team.html">فريقنا</a></li>
                     <li><a href="#contact">تواصل معنا</a></li>
@@ -60,7 +71,7 @@
             <img src="Technost4-removebg-preview.png" alt="شعار Technost">
             <h2>عن Technost</h2>
             <p>Technost هي شركة عراقية ناشئة متخصصة في التحول الرقمي، نساعد الشركات الناشئة والمتوسطة على الانتقال من الأنظمة التقليدية إلى حلول تكنولوجية حديثة ومبتكرة. نُقدّم خدمات متكاملة في تطوير الأنظمة، تصميم وتطوير المواقع والتطبيقات، بالإضافة إلى حلول الذكاء الاصطناعي وتحليل البيانات.</p>
-            <p>نسعى لبناء مستقبل رقمي متكامل في العراق من خلال تقديم حلول ذكية بأسعار تنافسية. رؤيتنا تتمثل في سد الفجوة التقنية في السوق العراقي وتقديم قيمة حقيقية لعملائنا، مما يمكّنهم من النمو والازدهار في العصر الرقمي.</p>
+            <p>نسعى لبناء مستقبل رقمي متكامل في العراق من العراق من خلال تقديم حلول ذكية بأسعار تنافسية. رؤيتنا تتمثل في سد الفجوة التقنية في السوق العراقي وتقديم قيمة حقيقية لعملائنا، مما يمكّنهم من النمو والازدهار في العصر الرقمي.</p>
             <h1>رؤيتنا:</h1>
             <p>نبرمج المستقبل من خلال تمكين الشركات العراقية بأدوات رقمية مبتكرة تساعدها على النمو والازدهار في عصر التحول الرقمي، وتحقيق أقصى استفادة من التكنولوجيا لتحقيق أهدافها.</p>
         </div>
@@ -160,15 +171,15 @@
     </section>
 
     <!-- *************************************************************** -->
-    <!-- ************* قسم عرض أنظمة ERP في إطارات لابتوب (محدث) ************* -->
+    <!-- ************* قسم عرض أنظمة ERP الأساسية (فواتير، موارد بشرية، لوحة تحكم) ************* -->
     <!-- *************************************************************** -->
     <section id="our-erp-showcase" class="py-16 bg-gray-100 dark:bg-gray-800 fade-in-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
-                نظام Technost ERP: حلولنا المتكاملة
+                أنظمة Technost ERP الأساسية
             </h2>
             <p class="text-center text-lg text-gray-700 dark:text-gray-300 mb-12">
-                نقدم لكم نظرة سريعة على بعض الوحدات الأساسية في نظامنا المتكامل لتخطيط موارد المؤسسات (ERP)، المصمم لتبسيط عملياتكم وتحقيق أقصى كفاءة.
+                نقدم لكم نظرة سريعة على الوحدات الأساسية في نظامنا المتكامل لتخطيط موارد المؤسسات (ERP)، المصمم لتبسيط عملياتكم وتحقيق أقصى كفاءة.
                 <br>اضغط على أي لابتوب لمشاهدة العرض التوضيحي.
             </p>
 
@@ -195,7 +206,7 @@
                 <div class="laptop-container group" data-erp-src="erp-mockups/erp-hr-mockup.html">
                     <div class="laptop-bezel relative">
                         <div class="laptop-screen">
-                            <!-- الشاشة ستكون فارغة هنا، المحتوى يظهر في المودال -->
+                            <!-- الشاشة ستكون فارغة هنا -->
                         </div>
                         <div class="camera-notch"></div>
                     </div>
@@ -213,7 +224,7 @@
                 <div class="laptop-container group" data-erp-src="erp-mockups/erp-dashboard-mockup.html">
                     <div class="laptop-bezel relative">
                         <div class="laptop-screen">
-                            <!-- الشاشة ستكون فارغة هنا، المحتوى يظهر في المودال -->
+                            <!-- الشاشة ستكون فارغة هنا -->
                         </div>
                         <div class="camera-notch"></div>
                     </div>
@@ -230,7 +241,83 @@
         </div>
     </section>
     <!-- *************************************************************** -->
-    <!-- ************* نهاية قسم عرض أنظمة ERP في إطارات لابتوب ************* -->
+    <!-- ************* نهاية قسم عرض أنظمة ERP الأساسية ************* -->
+    <!-- *************************************************************** -->
+
+    <!-- *************************************************************** -->
+    <!-- ************* قسم عرض وحدة إدارة فواتير العقود (CBM) - جديد ************* -->
+    <!-- *************************************************************** -->
+    <section id="cbm-showcase" class="py-16 bg-white dark:bg-gray-700 fade-in-on-scroll">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
+                وحدة إدارة فواتير العقود (CBM)
+            </h2>
+            <p class="text-center text-lg text-gray-700 dark:text-gray-300 mb-12">
+                نظام إدارة فواتير العقود (CBM) الخاص بـ Technost يضمن تتبعاً دقيقاً للعقود والفواتير الدورية، مما يسهل إدارة الإيرادات ويقلل الأخطاء.
+                <br>اضغط على اللابتوب لمشاهدة العرض التوضيحي.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- لابتوب 4: وحدة إدارة فواتير العقود (CBM) -->
+                <div class="laptop-container group" data-erp-src="erp-mockups/erp-cbm-mockup.html">
+                    <div class="laptop-bezel relative">
+                        <div class="laptop-screen">
+                            <!-- الشاشة ستكون فارغة هنا -->
+                        </div>
+                        <div class="camera-notch"></div>
+                    </div>
+                    <div class="laptop-base relative">
+                        <div class="keyboard"></div>
+                        <div class="trackpad"></div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mb-2">إدارة فواتير العقود</h3>
+                        <p class="text-gray-600 dark:text-gray-400">تتبع وإدارة العقود والفواتير الدورية بكفاءة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- *************************************************************** -->
+    <!-- ************* نهاية قسم عرض وحدة إدارة فواتير العقود (CBM) ************* -->
+    <!-- *************************************************************** -->
+
+    <!-- *************************************************************** -->
+    <!-- ************* قسم عرض وحدة إدارة علاقات العملاء (CRM) - جديد ************* -->
+    <!-- *************************************************************** -->
+    <section id="crm-showcase" class="py-16 bg-gray-100 dark:bg-gray-800 fade-in-on-scroll">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
+                وحدة إدارة علاقات العملاء (CRM)
+            </h2>
+            <p class="text-center text-lg text-gray-700 dark:text-gray-300 mb-12">
+                نظام إدارة علاقات العملاء (CRM) من Technost يساعدك على بناء علاقات قوية مع عملائك، تتبع الفرص البيعية، وتحسين رضا العملاء.
+                <br>اضغط على اللابتوب لمشاهدة العرض التوضيحي.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- لابتوب 5: وحدة إدارة علاقات العملاء (CRM) -->
+                <div class="laptop-container group" data-erp-src="erp-mockups/erp-crm-mockup.html">
+                    <div class="laptop-bezel relative">
+                        <div class="laptop-screen">
+                            <!-- الشاشة ستكون فارغة هنا -->
+                        </div>
+                        <div class="camera-notch"></div>
+                    </div>
+                    <div class="laptop-base relative">
+                        <div class="keyboard"></div>
+                        <div class="trackpad"></div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mb-2">إدارة علاقات العملاء</h3>
+                        <p class="text-gray-600 dark:text-gray-400">تحسين التفاعل مع العملاء وإدارة الفرص البيعية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- *************************************************************** -->
+    <!-- ************* نهاية قسم عرض وحدة إدارة علاقات العملاء (CRM) ************* -->
     <!-- *************************************************************** -->
 
     <section id="contact" class="contact-section fade-in-on-scroll">
