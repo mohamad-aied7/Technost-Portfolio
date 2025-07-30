@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وحدة إدارة فواتير العقود (CBM) - Technost ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f4f7f6;
+            color: #333;
+            overflow: hidden;
+        }
+        .sidebar {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        .sidebar a {
+            color: #ecf0f1;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.2s ease;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #34495e;
+        }
+        .header-bar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .table-header {
+            background-color: #f0f2f5;
+        }
+        .table-row:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .btn-primary {
+            background-color: #B28BC7;
+            color: white;
+            transition: background-color 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #8C6A9B;
+        }
+        .badge-active { background-color: #5BBA6F; color: white; }
+        .badge-expired { background-color: #e74c3c; color: white; }
+        .badge-pending { background-color: #f39c12; color: white; }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar w-64 p-4 flex flex-col justify-between">
+        <div>
+            <div class="text-2xl font-bold mb-8 text-center">Technost ERP</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active rounded-lg mb-2"><i class="fas fa-file-contract"></i> العقود</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-money-bill-alt"></i> الفواتير الدورية</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-users-cog"></i> العملاء المتعاقدون</a></li>
+                    <li><a href="#" class="rounded-lg mb-2"><i class="fas fa-chart-area"></i> تقارير العقود</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mt-8">
+            <a href="#" class="rounded-lg"><i class="fas fa-cog"></i> الإعدادات</a>
+            <a href="#" class="rounded-lg"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header Bar -->
+        <div class="header-bar p-4 flex justify-between items-center shadow-sm">
+            <h1 class="text-2xl font-semibold">وحدة إدارة فواتير العقود (CBM)</h1>
+            <div class="flex items-center gap-4">
+                <button class="btn-primary py-2 px-4 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-plus"></i> عقد جديد
+                </button>
+                <i class="fas fa-bell text-gray-600 text-xl cursor-pointer"></i>
+                <img src="https://placehold.co/40x40/cccccc/333333?text=U" alt="User Avatar" class="rounded-full">
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">إجمالي العقود</div>
+                    <div class="text-4xl font-bold text-blue-600">350</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">عقود نشطة</div>
+                    <div class="text-4xl font-bold text-green-600">300</div>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="text-gray-500 text-lg mb-2">عقود منتهية</div>
+                    <div class="text-4xl font-bold text-red-600">50</div>
+                </div>
+            </div>
+
+            <div class="card p-6">
+                <h2 class="text-xl font-semibold mb-4">أحدث العقود</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">رقم العقد</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">العميل</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">تاريخ البدء</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">تاريخ الانتهاء</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">القيمة</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="table-row">
+                                <td class="px-6 py-4 whitespace-nowrap">CON-001</td>
+                                <td class="px-6 py-4 whitespace-nowrap">شركة المستقبل</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2024-01-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2024-12-31</td>
+                                <td class="px-6 py-4 whitespace-nowrap">$10,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="badge-active text-xs font-semibold px-2.5 py-0.5 rounded-full">نشط</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900 ml-4">عرض</a>
+                                    <a href="#" class="text-red-600 hover:text-red-900">إنهاء</a>
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-6 py-4 whitespace-nowrap">CON-002</td>
+                                <td class="px-6 py-4 whitespace-nowrap">مجموعة الإبداع</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2023-06-15</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2024-06-15</td>
+                                <td class="px-6 py-4 whitespace-nowrap">$5,000</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="badge-expired text-xs font-semibold px-2.5 py-0.5 rounded-full">منتهي</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900 ml-4">عرض</a>
+                                    <a href="#" class="text-green-600 hover:text-green-900">تجديد</a>
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="px-6 py-4 whitespace-nowrap">CON-003</td>
+                                <td class="px-6 py-4 whitespace-nowrap">حلول التقنية</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2024-08-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2025-07-31</td>
+                                <td class="px-6 py-4 whitespace-nowrap">$7,500</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="badge-pending text-xs font-semibold px-2.5 py-0.5 rounded-full">قيد الانتظار</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900 ml-4">عرض</a>
+                                    <a href="#" class="text-blue-600 hover:text-blue-900">تفعيل</a>
+                                </td>
+                            </tr>
+                            <!-- المزيد من الصفوف هنا -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
